@@ -32,6 +32,31 @@ class OffloadLDA:
         return {'Weight_Vector':self.w, 'Intercept_Constant':self.c}
 
     def get_arduino_code(self):
-        pass
+        global_section = "double w[] = {"
+        #Offload weight vector
+        for val in self.w:
+            global_section += str(val)
+            global_section += ", "
+        global_section = global_section[:-2]
+        global_section += "};\n"
+        #Offload intercept constant
+        global_section += "double c = " + str(self.c) + ";\n\n"
+
+        setup_section = "void setup() {\n\tSerial.begin(9600);\n\n}\n\n"
+
+        loop_section =  "void loop() {\n\t//Data Section: To Be Coded Manually\n\n\tfloat data[" + str(self.dim) + "]; //This is your feature vector. Retrive your data into this array\n\n"
+        #Inference steps
+        loop_section += "\t//ML Inference Section\n\n\tdouble temp = 0.0;\n\tfor(int i=0; i<" + str(self.dim) + "; i++)\n\t{\n"
+        loop_section += "\t\ttemp += data[i]*w[i];\n\t}\n\n"
+        #Label 1
+        loop_section += '\tif(temp >= c)\n\t{\n\t\t//Do something for class label 1\n\t\tSerial.println("' + str(self.class1) + '");\n\t}\n'
+        #Label 0
+        loop_section += '\telse\n\t{\n\t\t//Do something for class label 0\n\t\tSerial.println("' + str(self.class0) + '"); \n\t}\n\n'
+        loop_section += "\tdelay(1000);\n}"
+
+        code = global_section + setup_section + loop_section
+        return code
+
+
 
     
