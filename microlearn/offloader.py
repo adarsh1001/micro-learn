@@ -1,9 +1,9 @@
+from ml_models.LinearDiscriminantAnalysis import OffloadLDA
 
 class Offload:
     supported_algorithms = ["LinearDiscriminantAnalysis", "QuadraticDiscriminantAnalysis", "GaussianNB", "SVC"]
 
     def __init__(self):
-        self.model = None
         self.offloader = None
         self.algorithm = None
 
@@ -35,9 +35,9 @@ class Offload:
         else:
             raise TypeError("Input ML model not supported! Only LDA, QDA, GNB and SVM of scikit-learn are supported.")
 
-        if self.is_model_trained(model):
-            self.model = model
-        else:
-            raise TypeError("Input ML model not trained on a binary-labelled dataset! First fit() on the dataset and then offload.")
+        if not self.is_model_trained(model):
+            raise TypeError("Input ML model not trained on a binary-class dataset! First .fit() on a dataset and then offload.")
+
+        
 
 
