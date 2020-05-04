@@ -3,7 +3,7 @@ micro-learn is a Python module for converting trained machine learning models in
 
 Machine learning algorithms typically require heavy computing and memory resources in the training phase, far greater than what a typical constrained microcontroller can offer. However, post training, many of these algorithms boil down to simple parameters that require simple arithmetic and logical operations for inference. These can easily run on microcontrollers in real time. The purpose of this library is to convert ML models (trained using scikit-learn) directly into Arduino inference code.
 
-Please refer to my ACM paper for theoretical and practical foundations regarding this procedure:
+All the inference algorithms are optimized for microcontrollers and require least possible arithmetic computations. Division operations have been converted to multiplications since the latter is much more computationally efficient. Note that all the algorithms are exact and not approximate. Please refer to my ACM paper for theoretical and practical foundations regarding this procedure:
 https://dl.acm.org/doi/abs/10.1145/3341105.3373967
  
 ## Installation
