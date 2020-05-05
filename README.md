@@ -27,8 +27,9 @@ The following binary-class scikit-learn models are supported for now:
 
 - Linear Discriminant Analysis (LDA)
 - Gaussian Naive Bayes (GNB)
+- Perceptron
 
-Support for linear SVM, QDA, logistic regression and more coming soon!
+Support for linear SVM, QDA, logistic regression and others coming soon!
 
 ## Usage
 Train a binary classifier using any of the supported scikit-learn models and simply pass this trained model to Offload(). Example for LDA is shown below. 
