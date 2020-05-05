@@ -30,7 +30,7 @@ Currently, binary-class LDA and Gaussian NB are supported. Support for QDA and l
 >>> lda = LinearDiscriminantAnalysis(store_covariance=True)
 >>> lda.fit(X, Y)
 >>> from microlearn.offloader import Offload
->>> off = Offload(lda)
+>>> off = Offload(lda) #Simply pass your trained model into Offload()
 >>> off.export_to_arduino('/home/adarsh1001/lda.ino')
 ```
 And that's it! The output Arduino template will have the corresponding ML inference code along with all the trained parameters. After exporting, open the .ino file and edit the data section as per your need. And of course, since the Arduino programming language is a derivative of C/C++, you can directly edit the template and convert it into a generic .c or .cpp code.
