@@ -52,16 +52,16 @@ double p1[] = {{{str_p1}}};
 double c = {str(self.c)};
 
 void setup() {{
-	Serial.begin(9600);
+    Serial.begin(9600);
 
 }}
 
 void loop() {{
-	//Data Section: To Be Coded Manually
+    //Data Section: To Be Coded Manually
 
-	float data[{str(self.dim)}]; //This is your feature vector. Retrive your data into this array.
+    float data[{str(self.dim)}]; //This is your feature vector. Retrive your data into this array.
 
-	//ML Inference Section
+    //ML Inference Section
 
     double term1 = 0.0;
     double term2 = 0.0;
@@ -74,18 +74,18 @@ void loop() {{
 
     double temp = term1 - term2;
 
-	if(temp >= c)
-	{{
-		//Do something for class label {str(self.class1)}.
-		Serial.println("{str(self.class1)}");
-	}}
-	else
-	{{
-		//Do something for class label {str(self.class0)}.
-		Serial.println("{str(self.class0)}"); 
-	}}
+    if(temp >= c)
+    {{
+        //Do something for class label {str(self.class1)}.
+        Serial.println("{str(self.class1)}");
+    }}
+    else
+    {{
+        //Do something for class label {str(self.class0)}.
+        Serial.println("{str(self.class0)}"); 
+    }}
 
-	delay(1000);
+    delay(1000);
 }}"""
         return code
 
