@@ -5,7 +5,7 @@ Machine learning algorithms typically require heavy computing and memory resourc
 
 All the inference algorithms are optimized for microcontrollers and require least possible arithmetic computations. Division operations have been converted to multiplications since the latter is much more computationally efficient. Note that all the algorithms are exact and not approximate. Please refer to my ACM paper for theoretical and practical foundations regarding this procedure:
 https://dl.acm.org/doi/abs/10.1145/3341105.3373967
- 
+
 ## Installation
 
 ### Dependencies
@@ -22,15 +22,23 @@ Pip installable version coming soon! For now, you can clone this repo and direct
 git clone https://github.com/adarsh1001/micro-learn.git
 ```
 
+## Supported Algorithms
+The following binary-class scikit-learn models are supported for now:
+
+- Linear Discriminant Analysis (LDA)
+- Gaussian Naive Bayes (GNB)
+
+Support for linear SVM, QDA, logistic regression and more coming soon!
+
 ## Usage
-Currently, binary-class LDA and Gaussian NB are supported. Support for QDA and linear SVM (and possibly many more) coming soon!
+Train a binary classifier using any of the supported scikit-learn models and simply pass this trained model to Offload(). Example for LDA is shown below. 
 
 ```python
 >>> from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 >>> lda = LinearDiscriminantAnalysis(store_covariance=True)
 >>> lda.fit(X, Y)
 >>> from microlearn.offloader import Offload
->>> off = Offload(lda) #Simply pass your trained model into Offload()
+>>> off = Offload(lda) #Simply pass your trained model!
 >>> off.export_to_arduino('/home/adarsh1001/lda.ino')
 ```
 And that's it! The output Arduino template will have the corresponding ML inference code along with all the trained parameters. After exporting, open the .ino file and edit the data section as per your need. And of course, since the Arduino programming language is a derivative of C/C++, you can directly edit the template and convert it into a generic .c or .cpp code.
