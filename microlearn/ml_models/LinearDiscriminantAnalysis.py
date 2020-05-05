@@ -57,13 +57,13 @@ void loop() {{
 
 	if(temp >= c)
 	{{
-		//Do something for class label 1.
-		Serial.println("1.0");
+		//Do something for class label {str(self.class1)}.
+		Serial.println("{str(self.class1)}");
 	}}
 	else
 	{{
-		//Do something for class label 0.
-		Serial.println("0.0"); 
+		//Do something for class label {str(self.class0)}.
+		Serial.println("{str(self.class0)}"); 
 	}}
 
 	delay(1000);

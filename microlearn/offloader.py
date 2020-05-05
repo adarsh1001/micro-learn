@@ -1,3 +1,4 @@
+from .ml_models.GaussianNB import OffloadGNB
 from .ml_models.LinearDiscriminantAnalysis import OffloadLDA
 
 class Offload:
@@ -35,6 +36,8 @@ class Offload:
     def get_offloader(self):
         if self.algorithm == self.supported_algorithms[0]:  #LDA
             return OffloadLDA(self.model)     
+        elif self.algorithm == self.supported_algorithms[2]: #GNB
+            return OffloadGNB(self.model)
     
     def check_model_validity(self, model):
         if self.is_algorithm_supported(model):
