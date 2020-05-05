@@ -23,7 +23,7 @@ git clone https://github.com/adarsh1001/micro-learn.git
 ```
 
 ## Usage
-Currently, only binary-class LDA is supported. Support for QDA, linear SVM and Gaussian NB (and possibly many more) coming soon!
+Currently, binary-class LDA and Gaussian NB are supported. Support for QDA and linear SVM (and possibly many more) coming soon!
 
 ```python
 >>> from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
