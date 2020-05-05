@@ -26,12 +26,12 @@ git clone https://github.com/adarsh1001/micro-learn.git
 Currently, only binary-class LDA is supported. Support for QDA, linear SVM and Gaussian NB (and possibly many more) coming soon!
 
 ```python
->> from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
->> lda = LinearDiscriminantAnalysis(store_covariance=True)
->> lda.fit(X, Y)
->> from microlearn.offloader import Offload
->> off = Offload(lda)
->> off.export_to_arduino('/home/adarsh1001/lda.ino')
+>>> from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+>>> lda = LinearDiscriminantAnalysis(store_covariance=True)
+>>> lda.fit(X, Y)
+>>> from microlearn.offloader import Offload
+>>> off = Offload(lda)
+>>> off.export_to_arduino('/home/adarsh1001/lda.ino')
 ```
 And that's it! The output Arduino template will have the corresponding ML inference code along with all the trained parameters. After exporting, open the .ino file and edit the data section as per your need. And of course, since the Arduino programming language is a derivative of C/C++, you can directly edit the template and convert it into a generic .c or .cpp code.
 
