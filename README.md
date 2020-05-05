@@ -25,9 +25,9 @@ git clone https://github.com/adarsh1001/micro-learn.git
 ## Supported Algorithms
 The following binary-class scikit-learn models are supported for now:
 
-- Linear Discriminant Analysis (LDA)
-- Gaussian Naive Bayes (GNB)
 - Perceptron
+- Gaussian Naive Bayes (GNB)
+- Linear Discriminant Analysis (LDA)
 
 Support for linear SVM, QDA, logistic regression and others coming soon!
 
