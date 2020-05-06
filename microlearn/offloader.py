@@ -1,6 +1,7 @@
 from .ml_models.GaussianNB import OffloadGNB
 from .ml_models.Perceptron import OffloadPerceptron
 from .ml_models.LinearDiscriminantAnalysis import OffloadLDA
+from .ml_models.QuadraticDiscriminantAnalysis import OffloadQDA
 
 class Offload:
     supported_algorithms = ["LinearDiscriminantAnalysis", "QuadraticDiscriminantAnalysis", "GaussianNB", "SVC", "Perceptron"]
@@ -37,6 +38,8 @@ class Offload:
     def get_offloader(self):
         if self.algorithm == self.supported_algorithms[0]:  #LDA
             return OffloadLDA(self.model)     
+        elif self.algorithm == self.supported_algorithms[1]:  #QDA
+            return OffloadQDA(self.model)
         elif self.algorithm == self.supported_algorithms[2]: #GNB
             return OffloadGNB(self.model)
         elif self.algorithm == self.supported_algorithms[4]: #Perceptron
@@ -46,7 +49,7 @@ class Offload:
         if self.is_algorithm_supported(model):
             self.algorithm = self.get_algorithm(model)
         else:
-            raise TypeError("Input ML model not supported! Only LDA, GNB and Perceptron of scikit-learn are supported.")
+            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB and Perceptron of scikit-learn are supported.")
 
         if not self.is_model_trained(model):
             raise TypeError("Input ML model not trained on a dataset! First .fit() on a dataset and then offload.")
