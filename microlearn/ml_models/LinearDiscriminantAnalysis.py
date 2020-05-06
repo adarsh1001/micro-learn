@@ -8,7 +8,7 @@ class OffloadLDA:
         try:
             self.cov_matrix = model.covariance_
         except AttributeError:
-            print("LDA must be trained with 'store_covariances=True' parameter.")
+            print("LDA must be trained with 'store_covariance=True' parameter.")
             raise
         self.inv_cov_matrix = np.linalg.inv(self.cov_matrix)
         self.mean_vector0 = model.means_[0]
