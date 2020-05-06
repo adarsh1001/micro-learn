@@ -64,7 +64,7 @@ class Offload:
             raise TypeError("Input ML model trained on a multiclass dataset! Only binary-class models are supported.")
 
         if self.get_algorithm(model) == 'SVC' or self.get_algorithm(model) == 'LinearSVC':
-            if self.optional != 'StandardScaler':
+            if self.get_algorithm(self.optional) != 'StandardScaler':
                 raise TypeError("SVM algorithm is scale-variant and requires StandardScaler variable as the second argument.")
             if not self.is_model_trained(self.optional):
                 raise TypeError("First fit StandardScaler on the training dataset and then offload.")
