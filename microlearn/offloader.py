@@ -1,3 +1,4 @@
+from .ml_models.SVC import OffloadSVM
 from .ml_models.GaussianNB import OffloadGNB
 from .ml_models.Perceptron import OffloadPerceptron
 from .ml_models.LinearDiscriminantAnalysis import OffloadLDA
@@ -50,12 +51,14 @@ class Offload:
             return OffloadQDA(self.model)
         elif self.algorithm == self.supported_algorithms[2]: #GNB
             return OffloadGNB(self.model)
-        elif self.algorithm == self.supported_algorithms[4]: #Perceptron
+        elif self.algorithm == self.supported_algorithms[3] or self.algorithm == self.supported_algorithms[4]: #SVM
+            return OffloadSVM(self.model, self.optional)
+        elif self.algorithm == self.supported_algorithms[5]: #Perceptron
             return OffloadPerceptron(self.model)
     
     def check_model_validity(self, model):
         if not self.is_algorithm_supported(model):
-            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB and Perceptron of scikit-learn are supported.")
+            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, SVM and Perceptron of scikit-learn are supported.")
 
         if not self.is_model_trained(model):
             raise TypeError("Input ML model not trained on a dataset! First .fit() on a dataset and then offload.")

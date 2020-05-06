@@ -29,11 +29,12 @@ The following binary-class scikit-learn models are supported for now:
 - Gaussian Naive Bayes (GNB)
 - Linear Discriminant Analysis (LDA)
 - Quadratic Discriminant Analysis (QDA)
+- Support Vector Machine (SVM) (Linear Kernel)
 
-Support for linear SVM, logistic regression and others coming soon!
+Support for other multi-class and other scikit-learn models coming soon!
 
 ## Usage
-Train a binary classifier using any of the supported scikit-learn models and simply pass this trained model to Offload(). Example for LDA is shown below. 
+Train a binary classifier using any of the supported scikit-learn models and simply pass this trained model to Offload(). Example for LDA is shown below. For SVM (LinearSVM or SVC), Offload() expects a fitted StandardScaler model as a second argument since SVM is a scale-variant algorithm. 
 
 ```python
 >>> from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -43,6 +44,7 @@ Train a binary classifier using any of the supported scikit-learn models and sim
 >>> off = Offload(lda) #Simply pass your trained model!
 >>> off.export_to_arduino('/home/adarsh1001/lda.ino')
 ```
+
 And that's it! The output Arduino template will have the corresponding ML inference code along with all the trained parameters. After exporting, open the .ino file and edit the data section as per your need. And of course, since the Arduino programming language is a derivative of C/C++, you can directly edit the template and convert it into a generic .c or .cpp code.
 
 ## Project History
