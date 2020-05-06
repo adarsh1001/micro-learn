@@ -31,7 +31,7 @@ The following binary-class scikit-learn models are supported for now:
 - Quadratic Discriminant Analysis (QDA)
 - Support Vector Machine (SVM) (Linear Kernel)
 
-Support for other multi-class and other scikit-learn models coming soon!
+Support for multi-class and other scikit-learn models coming soon!
 
 ## Usage
 Train a binary classifier using any of the supported scikit-learn models and simply pass this trained model to Offload(). Example for LDA is shown below. For SVM (LinearSVM or SVC), Offload() expects a fitted StandardScaler model as a second argument since SVM is a scale-variant algorithm. 
