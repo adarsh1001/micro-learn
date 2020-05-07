@@ -23,15 +23,16 @@ git clone https://github.com/adarsh1001/micro-learn.git
 ```
 
 ## Supported Algorithms
-The following binary-class scikit-learn models are supported for now:
+The following scikit-learn models are supported for now:
 
 - Perceptron
+- Linear Regression (LR)
 - Gaussian Naive Bayes (GNB)
 - Linear Discriminant Analysis (LDA)
 - Quadratic Discriminant Analysis (QDA)
 - Support Vector Machine (SVM) (Linear Kernel)
 
-Support for multi-class and other scikit-learn models coming soon!
+Note that only binary-class classification models are supported as of now. Support for multi-class and other scikit-learn models coming soon!
 
 ## Usage
 Train a binary classifier using any of the supported scikit-learn models and simply pass this trained model to Offload(). Example for LDA is shown below. For SVM (LinearSVM or SVC), Offload() expects a fitted StandardScaler model as a second argument since SVM is a scale-variant algorithm. 

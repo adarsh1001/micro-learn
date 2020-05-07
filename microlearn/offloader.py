@@ -1,11 +1,12 @@
 from .ml_models.SVC import OffloadSVM
 from .ml_models.GaussianNB import OffloadGNB
+from .ml_models.LinearRegression import OffloadLR
 from .ml_models.Perceptron import OffloadPerceptron
 from .ml_models.LinearDiscriminantAnalysis import OffloadLDA
 from .ml_models.QuadraticDiscriminantAnalysis import OffloadQDA
 
 class Offload:
-    supported_algorithms = ["LinearDiscriminantAnalysis", "QuadraticDiscriminantAnalysis", "GaussianNB", "SVC", "LinearSVC", "Perceptron"]
+    supported_algorithms = ["LinearDiscriminantAnalysis", "QuadraticDiscriminantAnalysis", "GaussianNB", "SVC", "LinearSVC", "Perceptron", "LinearRegression"]
 
     def __init__(self, model, optional=None):
         self.optional = optional
@@ -24,25 +25,21 @@ class Offload:
             return False
         if "_sklearn_version" not in model.__getstate__():
             return False
-        algorithm = self.get_algorithm(model)
-        return algorithm in self.supported_algorithms
+        return self.get_algorithm(model) in self.supported_algorithms
     
     def is_model_trained(self, model):
-        if self.get_algorithm(model) == 'StandardScaler':
-            try:
-                model.__dict__["n_samples_seen_"]
-            except KeyError:
-                return False
-            return True
+        if self.get_algorithm(model) == "StandardScaler":
+            return "n_samples_seen_" in model.__dict__
+        elif self.get_algorithm(model) == "LinearRegression":
+            return "singular_" in model.__dict__
         else:
-            try:
-                model.__dict__["classes_"]
-            except KeyError:
-                return False
-            return True
+            return "classes_" in model.__dict__
 
     def is_model_binary(self, model):
-        return len(model.__dict__["classes_"]) == 2
+        if self.get_algorithm(model) == "LinearRegression":
+            return True
+        else:
+            return len(model.__dict__["classes_"]) == 2
 
     def get_offloader(self):
         if self.algorithm == self.supported_algorithms[0]:  #LDA
@@ -55,10 +52,12 @@ class Offload:
             return OffloadSVM(self.model, self.optional)
         elif self.algorithm == self.supported_algorithms[5]: #Perceptron
             return OffloadPerceptron(self.model)
+        elif self.algorithm == self.supported_algorithms[6]: #LR
+            return OffloadLR(self.model)
     
     def check_model_validity(self, model):
         if not self.is_algorithm_supported(model):
-            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, SVM and Perceptron of scikit-learn are supported.")
+            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, LR, SVM and Perceptron of scikit-learn are supported.")
 
         if not self.is_model_trained(model):
             raise TypeError("Input ML model not trained on a dataset! First .fit() on a dataset and then offload.")
@@ -66,8 +65,8 @@ class Offload:
         if not self.is_model_binary(model):
             raise TypeError("Input ML model trained on a multiclass dataset! Only binary-class models are supported.")
 
-        if self.get_algorithm(model) == 'SVC' or self.get_algorithm(model) == 'LinearSVC':
-            if self.get_algorithm(self.optional) != 'StandardScaler':
+        if self.get_algorithm(model) == "SVC" or self.get_algorithm(model) == "LinearSVC":
+            if self.get_algorithm(self.optional) != "StandardScaler":
                 raise TypeError("SVM algorithm is scale-variant and requires StandardScaler variable as the second argument.")
             if not self.is_model_trained(self.optional):
                 raise TypeError("First fit StandardScaler on the training dataset and then offload.")
