@@ -1,7 +1,7 @@
 import math
 import numpy as np 
 
-class OffloadLogisticRegression:
+class OffloadLogR:
     def __init__(self, model):
         self.class0 = model.__dict__['classes_'][0]
         self.class1 = model.__dict__['classes_'][1]
