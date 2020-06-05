@@ -2,7 +2,7 @@ from .ml_models.SVC import OffloadSVM
 from .ml_models.GaussianNB import OffloadGNB
 from .ml_models.LinearRegression import OffloadLR
 from .ml_models.Perceptron import OffloadPerceptron
-from .ml_models.LogisticRegression import OffloadLogR
+from .ml_models.LogisticRegression import OffloadLogit
 from .ml_models.LinearDiscriminantAnalysis import OffloadLDA
 from .ml_models.QuadraticDiscriminantAnalysis import OffloadQDA
 
@@ -56,7 +56,7 @@ class Offload:
         elif self.algorithm == self.supported_algorithms[6]: #LR
             return OffloadLR(self.model)
         elif self.algorithm == self.supported_algorithms[7]: #LogR
-            return OffloadLogR(self.model)
+            return OffloadLogit(self.model)
     
     def check_model_validity(self, model):
         if not self.is_algorithm_supported(model):
