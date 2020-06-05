@@ -60,7 +60,7 @@ class Offload:
     
     def check_model_validity(self, model):
         if not self.is_algorithm_supported(model):
-            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, LR, LogR, SVM and Perceptron of scikit-learn are supported.")
+            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, LR, Logit, SVM and Perceptron of scikit-learn are supported.")
 
         if not self.is_model_trained(model):
             raise TypeError("Input ML model not trained on a dataset! First .fit() on a dataset and then offload.")
