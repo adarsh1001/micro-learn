@@ -55,7 +55,7 @@ class Offload:
             return OffloadPerceptron(self.model)
         elif self.algorithm == self.supported_algorithms[6]: #LR
             return OffloadLR(self.model)
-        elif self.algorithm == self.supported_algorithms[7]: #LogR
+        elif self.algorithm == self.supported_algorithms[7]: #Logit
             return OffloadLogit(self.model)
     
     def check_model_validity(self, model):
