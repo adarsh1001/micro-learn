@@ -4,7 +4,7 @@ from .ml_models.LinearRegression import OffloadLR
 from .ml_models.Perceptron import OffloadPerceptron
 from .ml_models.LogisticRegression import OffloadLogit
 from .ml_models.LinearDiscriminantAnalysis import OffloadLDA
-from .ml_models.PassiveAggressiveClassifier import OffloadPAC
+from .ml_models.PassiveAggressiveClassifier import OffloadPA
 from .ml_models.QuadraticDiscriminantAnalysis import OffloadQDA
 
 class Offload:
@@ -58,12 +58,12 @@ class Offload:
             return OffloadLR(self.model)
         elif self.algorithm == self.supported_algorithms[7]: #Logit
             return OffloadLogit(self.model)
-        elif self.algorithm == self.supported_algorithms[8]: #PAC
-            return OffloadPAC(self.model)
+        elif self.algorithm == self.supported_algorithms[8]: #PA
+            return OffloadPA(self.model)
     
     def check_model_validity(self, model):
         if not self.is_algorithm_supported(model):
-            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, LR, Logit, SVM, PAC and Perceptron of scikit-learn are supported.")
+            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, LR, Logit, SVM, PA and Perceptron of scikit-learn are supported.")
 
         if not self.is_model_trained(model):
             raise TypeError("Input ML model not trained on a dataset! First .fit() on a dataset and then offload.")

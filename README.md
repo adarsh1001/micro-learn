@@ -29,7 +29,7 @@ The following scikit-learn models are supported for now:
 - Logistic Regression (Logit)
 - Gaussian Naive Bayes (GNB)
 - Linear Discriminant Analysis (LDA)
-- Passive-Aggressive Classifier (PAC)
+- Passive-Aggressive Classifier (PA)
 - Quadratic Discriminant Analysis (QDA)
 - Support Vector Machine (SVM) (Linear Kernel)
 
