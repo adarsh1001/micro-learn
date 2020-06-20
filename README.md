@@ -24,6 +24,7 @@ git clone https://github.com/adarsh1001/micro-learn.git
 ## Supported Algorithms
 The following scikit-learn models are supported for now:
 
+- KMeans
 - Perceptron
 - Linear Regression (LR)
 - Logistic Regression (Logit)
