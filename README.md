@@ -1,5 +1,4 @@
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.org/project/micro-learn/)
-[![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.org/project/micro-learn/)
+[![PyPI version](https://badge.fury.io/py/micro-learn.svg)](https://badge.fury.io/py/micro-learn)
 
 # micro-learn
 micro-learn is a Python module for converting trained machine learning models into inference code that can run on microcontrollers in real time.
