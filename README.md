@@ -1,3 +1,6 @@
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.org/project/micro-learn/)
+[![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.org/project/micro-learn/)
+
 # micro-learn
 micro-learn is a Python module for converting trained machine learning models into inference code that can run on microcontrollers in real time.
 
@@ -12,13 +15,11 @@ All the inference algorithms are optimized for microcontrollers and require leas
 - Python (>= 3.6)
 - NumPy (>= 1.13.3)
 
-Tested only on Linux for now.
-
 ### User Installation
-Pip installable version coming soon! For now, you can clone this repo and directly import the Python packages.
+Use Python3 pip to install the latest micro-learn package.
 
 ```bash
-git clone https://github.com/adarsh1001/micro-learn.git
+pip install micro-learn
 ```
 
 ## Supported Algorithms
