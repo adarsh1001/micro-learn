@@ -1,0 +1,4 @@
+/build/
+/dist/
+/micro_learn.egg-info/
+__pycache__*
