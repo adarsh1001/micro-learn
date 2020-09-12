@@ -1,4 +1,5 @@
 from .ml_models.SVC import OffloadSVM
+from .ml_models.PCA import OffloadPCA
 from .ml_models.KMeans import OffloadKMeans
 from .ml_models.GaussianNB import OffloadGNB
 from .ml_models.LinearRegression import OffloadLR
@@ -9,7 +10,7 @@ from .ml_models.PassiveAggressiveClassifier import OffloadPA
 from .ml_models.QuadraticDiscriminantAnalysis import OffloadQDA
 
 class Offload:
-    supported_algorithms = ["LinearDiscriminantAnalysis", "QuadraticDiscriminantAnalysis", "GaussianNB", "SVC", "LinearSVC", "Perceptron", "LinearRegression", "LogisticRegression", "PassiveAggressiveClassifier", "KMeans"]
+    supported_algorithms = ["LinearDiscriminantAnalysis", "QuadraticDiscriminantAnalysis", "GaussianNB", "SVC", "LinearSVC", "Perceptron", "LinearRegression", "LogisticRegression", "PassiveAggressiveClassifier", "KMeans", "PCA"]
 
     def __init__(self, model, optional=None):
         self.optional = optional
@@ -37,11 +38,13 @@ class Offload:
             return "singular_" in model.__dict__
         elif self.get_algorithm(model) == "KMeans":
             return "cluster_centers_" in model.__dict__
+        elif self.get_algorithm(model) == "PCA":
+            return "n_components_" in model.__dict__
         else:
             return "classes_" in model.__dict__
 
     def is_model_binary(self, model):
-        if self.get_algorithm(model) == "LinearRegression" or self.get_algorithm(model) == "KMeans":
+        if self.get_algorithm(model) == "LinearRegression" or self.get_algorithm(model) == "KMeans" or self.get_algorithm(model) == "PCA":
             return True
         else:
             return len(model.__dict__["classes_"]) == 2
@@ -65,10 +68,12 @@ class Offload:
             return OffloadPA(self.model)
         elif self.algorithm == self.supported_algorithms[9]: #KMeans
             return OffloadKMeans(self.model)
+        elif self.algorithm == self.supported_algorithms[10]: #PCA
+            return OffloadPCA(self.model)
     
     def check_model_validity(self, model):
         if not self.is_algorithm_supported(model):
-            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, LR, Logit, SVM, PA, KMeans and Perceptron of scikit-learn are supported.")
+            raise TypeError("Input ML model not supported! Only LDA, QDA, GNB, LR, Logit, SVM, PA, KMeans, PCA and Perceptron of scikit-learn are supported.")
 
         if not self.is_model_trained(model):
             raise TypeError("Input ML model not trained on a dataset! First .fit() on a dataset and then offload.")
@@ -92,8 +97,3 @@ class Offload:
         f = open(path, 'a')
         f.write(code)
         f.close()
-
-
-
-
-

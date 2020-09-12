@@ -88,8 +88,3 @@ void loop() {{
     delay(1000);
 }}"""
         return code
-
-    
-
-
-
