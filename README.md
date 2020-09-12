@@ -24,18 +24,27 @@ pip install micro-learn
 ## Supported Algorithms
 The following scikit-learn models are supported for now:
 
-- KMeans
+#### Supervised Learning (Classification)
 - Perceptron
-- Linear Regression (LR)
 - Logistic Regression (Logit)
 - Gaussian Naive Bayes (GNB)
 - Passive-Aggressive Classifier (PA)
 - Linear Discriminant Analysis (LDA)
-- Principal Component Analysis (PCA)
 - Quadratic Discriminant Analysis (QDA)
 - Support Vector Machine (SVM) (Linear Kernel)
 
-Note that only binary-class classification models are supported as of now. Support for multi-class and other scikit-learn models coming soon!
+*Note that only binary-class classification models are supported as of now. Support for multi-class models coming soon!*
+
+#### Supervised Learning (Regression)
+- Linear Regression (LR)
+
+#### Unsupervised Learning (Clustering)
+- KMeans
+
+#### Unsupervised Learning (Dimensionality Reduction)
+- Principal Component Analysis (PCA)
+
+*Support for other scikit-learn models coming soon!*
 
 ## Usage
 Train a binary classifier using any of the supported scikit-learn models and simply pass this trained model to Offload(). Example for LDA is shown below. For SVM (LinearSVM or SVC), Offload() expects a fitted StandardScaler model as a second argument since SVM is a scale-variant algorithm. 
