@@ -22,7 +22,7 @@ pip install micro-learn
 ```
 
 ## Supported Algorithms
-The following scikit-learn models are supported for now:
+The following scikit-learn models are supported as of now:
 
 #### Supervised Learning (Classification)
 - Perceptron
@@ -33,7 +33,7 @@ The following scikit-learn models are supported for now:
 - Quadratic Discriminant Analysis (QDA)
 - Support Vector Machine (SVM) (Linear Kernel)
 
-*Note that only binary-class classification models are supported as of now. Support for multi-class models coming soon!*
+*Note that only binary-class classification is supported as of now. Support for multi-class classification coming soon!*
 
 #### Supervised Learning (Regression)
 - Linear Regression (LR)
