@@ -46,7 +46,7 @@ The following scikit-learn models are supported as of now:
 *Support for other scikit-learn models coming soon!*
 
 ## Usage
-Train any of the supported machine learning models using scikit-learn and simply pass this trained model to micro-learn's *Offload()*. Example for *Gaussian Naive Bayes* is shown below. All other supported algorithms follow the exact same sequence except for SVM in which *Offload()* expects a fitted *StandardScaler* model as a second argument since the algorithm is scale variant. 
+Train any of the supported machine learning models using scikit-learn and simply pass this trained model to micro-learn's *Offload()*. Example for *Gaussian Naive Bayes* is shown below. All other supported algorithms follow the exact same sequence. For SVM and PCA (scale-variant algorithms), an optional *StandardScaler* object can be passed as a second argument to *Offload()*. 
 
 ```python
 >>> from sklearn.naive_bayes import GaussianNB
