@@ -69,7 +69,7 @@ class Offload:
         elif self.algorithm == self.supported_algorithms[9]: #KMeans
             return OffloadKMeans(self.model)
         elif self.algorithm == self.supported_algorithms[10]: #PCA
-            return OffloadPCA(self.model)
+            return OffloadPCA(self.model, self.optional)
     
     def check_model_validity(self, model):
         if not self.is_algorithm_supported(model):
@@ -80,11 +80,11 @@ class Offload:
 
         if not self.is_model_binary(model):
             raise TypeError("Input ML model trained on a multiclass dataset! Only binary-class models are supported.")
-
-        if self.get_algorithm(model) == "SVC" or self.get_algorithm(model) == "LinearSVC":
+        
+        if self.optional:
             if self.get_algorithm(self.optional) != "StandardScaler":
-                raise TypeError("SVM algorithm is scale-variant and requires StandardScaler variable as the second argument.")
-            if not self.is_model_trained(self.optional):
+                raise TypeError("Only StandardScaler is supported as the second argument.")
+            elif not self.is_model_trained(self.optional):
                 raise TypeError("First fit StandardScaler on the training dataset and then offload.")
 
     def get_params(self):
