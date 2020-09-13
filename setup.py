@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="micro-learn",
-    version="0.0.3",
+    version="0.0.4",
     author="Adarsh Pal Singh",
     author_email="adarshpalsingh1996@gmail.com",
     description="A Python library to export scikit-learn models to microcontrollers",
